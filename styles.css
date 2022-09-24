@@ -1,0 +1,42 @@
+.flex-game-box{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 10%;
+    
+}
+
+#Flex-contain-Parent{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.gameButtos{
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#red{
+    background-color: red;
+}
+#green{
+    background-color: green;
+}
+#blue{
+    background-color: blue;
+}
+#yellow{
+    background-color: yellow;
+}
