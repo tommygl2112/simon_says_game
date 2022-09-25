@@ -34,7 +34,7 @@ button {
     outline: 0;
     border-radius: 1em;
     border: none;
-    transition: all .3s ease-out; /* Here you set the time it will take to lower the button when it is pressed */
+    transition: all .1s ease-out; /* Here you set the time it will take to lower the button when it is pressed */
     box-shadow: inset 0 -16px 0 0 rgba(0, 0, 0, .2), /* Simulates a 3D boxes with shadows */
         1px 1px 0 0 lightgray,
         2px 2px 0 0 lightgray,
@@ -48,34 +48,37 @@ button {
         10px 10px 0 0 lightgray;
 }
 
-/* When you click the buttons changes the shadows size to simulated that the button is pressed*/
-button:active {
+/* When you click the buttons changes the shadows size to simulated that the button is pressed also while is showing the secuence inputs*/
+.square:active,
+.active {
+    /*filter: brightness(300%);*/
     box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .2),
-        1px 1px 0 0 lightgray,
-        2px 2px 0 0 lightgray,
-        3px 3px 0 0 lightgray,
-        4px 4px 0 0 lightgray,
-        5px 5px 0 0 lightgray;
+    1px 1px 0 0 lightgray,
+    2px 2px 0 0 lightgray,
+    3px 3px 0 0 lightgray,
+    4px 4px 0 0 lightgray,
+    5px 5px 0 0 lightgray;
 }
 
+
 /* Sets the button colors */
-#red {
+.red {
     background-color: red;
 }
 
-#blue {
+.blue {
     background-color: blue;
 }
 
-#green {
+.green {
     background-color: green;
 }
 
-#yellow {
+.yellow {
     background-color: yellow;
 }
 
-#silver{
+#startButton {
     background-color: silver;
     margin-top: 40px;
     height: 100px;
