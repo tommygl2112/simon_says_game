@@ -17,6 +17,14 @@ class SimonSays {
 
         this.blockedButtons = true; // This is when the game is showing the secuense to follow player can't press buttons
         this.buttons = Array.from(gameButtons); // Array for save the game buttons information
+        this.errorSound = new Audio('./sounds/errorSound.mp3');
+        this.buttonSounds = [
+            new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
+            new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
+            new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
+            new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'),
+        ]
+        //Add the sounds for the game buttons
     }
 
     // ================= Methods ====================================
@@ -67,6 +75,7 @@ class SimonSays {
 
         let t = setInterval(() => { // Interavl timer
             const button = this.buttons[this.sequence[sequenceNumber]];
+            this.buttonSounds[this.sequence[sequenceNumber]].play(); //Call the button sounds to play in the sequence
             this.toggleButtonStyle(button);
             setTimeout(() => this.toggleButtonStyle(button), this.speed / 2);
             sequenceNumber++;
@@ -88,7 +97,7 @@ class SimonSays {
 
     validateChosenColor(value) {
         if (this.sequence[this.userStep] === value) { //if the user stept secuense matches with the game secuense button is true
-
+            this.buttonSounds[value].play(); // Plays the sound to confirm that the button secuense is correct
             if (this.level === this.userStep) { // This is when the secuense is not over but he is still playing
                 this.updateLevel(this.level + 1); // sums the level counter
                 this.GameOver(); // Validates if the match is over
