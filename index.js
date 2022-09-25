@@ -3,14 +3,16 @@ console.log('Live reloading');
 const startButton = document.getElementById('startButton');
 const gameButtons = document.getElementsByClassName('square');
 const level = document.getElementById('level');
+const counter = document.getElementById('counter');
 
 class SimonSays {
-    constructor(gameButtons, startButton, level) {
-        this.display = { startButton, level }
+    constructor(gameButtons, startButton, level, counter) {
+        this.display = { startButton, level, counter }
 
         this.userStep = 0; // User secuence
         this.level = 0; // Actual game level
         this.totalLevels = 20; // Finishing game
+        this.totalsteps = 0;
 
         this.sequence = []; // Game secuence
         this.speed = 1000; // 1 second
@@ -41,6 +43,7 @@ class SimonSays {
         this.userStep = 0; // Reset the user secuences to press
 
         this.updateLevel(0);  // Reset the levels
+        this.updatecounter(this.level);
         this.sequence = this.createSequence(); // Creates the random secuence of the inputs
         this.showSequence(); // Shows the secuense to repat (1 button at start)
 
@@ -54,6 +57,11 @@ class SimonSays {
     updateLevel(n) {
         this.level = n;
         this.display.level.textContent = `level: ${this.level + 1}`; // Change the content for the amount of level player have beat (starts at 0)
+    }
+
+    updatecounter(n)   {
+        this.totalsteps = n + 1;
+        this.display.counter.textContent = `steps: ${this.totalsteps}`;
     }
 
     // This methot sets the randoms input secuence
@@ -102,9 +110,12 @@ class SimonSays {
 
     validateChosenColor(value) {
         if (this.sequence[this.userStep] === value) { //if the user stept secuense matches with the game secuense button is true
+            this.totalsteps = this.totalsteps-1;
+            this.display.counter.textContent = `steps: ${this.totalsteps}`;
             this.buttonSounds[value].play(); // Plays the sound to confirm that the button secuense is correct
             if (this.level === this.userStep) { // This is when the secuense is not over but he is still playing
                 this.updateLevel(this.level + 1); // sums the level counter
+                this.updatecounter(this.level);
                 this.GameOver(); // Validates if the match is over
             }
 
@@ -126,5 +137,5 @@ class SimonSays {
 
 }
 
-const simon = new SimonSays(gameButtons, startButton, level);
+const simon = new SimonSays(gameButtons, startButton, level, counter);
 simon.init();
