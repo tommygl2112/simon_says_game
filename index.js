@@ -106,6 +106,7 @@ class SimonSays {
 
     gameLost() { //Function used to notify a mistake to the player
         this.errorSound.play(); //Play an error sound
+        this.userStep = 0; // Reset the user secuences to press
         this.showSequence(); //Call the current sequence again
     }
 
