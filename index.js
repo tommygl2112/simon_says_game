@@ -91,6 +91,11 @@ class SimonSays {
         button.classList.toggle('active'); // Adds the class to the buttons and simulates that the button is pressed
     }
 
+    gameLost() { //Function used to notify a mistake to the player
+        this.errorSound.play(); //Play an error sound
+        this.showSequence(); //Call the current sequence again
+    }
+
     clickButton(value) {
         !this.blockedButtons && this.validateChosenColor(value); // if buttons arent blocked so validates the color secuence
     }
@@ -107,7 +112,9 @@ class SimonSays {
                 this.userStep++;
             }
         }
-
+        else {  
+            this.gameLost(); //Call a function for when the player presses a wrong button
+        }
     }
 
     GameOver() {
