@@ -4,10 +4,11 @@ const startButton = document.getElementById('startButton');
 const gameButtons = document.getElementsByClassName('square');
 const level = document.getElementById('level');
 const counter = document.getElementById('counter');
+const resetButton = document.getElementById('resetButton');
 
 class SimonSays {
-    constructor(gameButtons, startButton, level, counter) {
-        this.display = { startButton, level, counter }
+    constructor(gameButtons, startButton, level, counter, resetButton) {
+        this.display = {startButton, level, counter, resetButton}
 
         this.userStep = 0; // User secuence
         this.level = 0; // Actual game level
@@ -34,7 +35,9 @@ class SimonSays {
     // Initialize the Simon program
     init() {
         // With an onclick event execute the startGame method
+        this.display.resetButton.disabled = true; // disable the start game button
         this.display.startButton.onclick = () => this.startGame();
+        this.display.resetButton.onclick = () => this.resetGame();
     }
 
     // Starts the game loop
@@ -48,9 +51,10 @@ class SimonSays {
         this.showSequence(); // Shows the secuense to repat (1 button at start)
 
         this.buttons.forEach((element, i) => {  // To each button
-            element.classList.remove('winner'); // If player plays again after win the game
             element.onclick = () => this.clickButton(i); // Gets the button value with a click
         });
+        
+        this.display.resetButton.disabled = false; // disable the start game button
     }
 
     // Updates the level and the buttons
@@ -61,7 +65,7 @@ class SimonSays {
 
     updatecounter(n)   {
         this.totalsteps = n + 1;
-        this.display.counter.textContent = `steps: ${this.totalsteps}`;
+        this.display.counter.textContent = `Following steps: ${this.totalsteps}`;
     }
 
     // This methot sets the randoms input secuence
@@ -97,6 +101,7 @@ class SimonSays {
 
     toggleButtonStyle(button) {
         button.classList.toggle('active'); // Adds the class to the buttons and simulates that the button is pressed
+
     }
 
     gameLost() { //Function used to notify a mistake to the player
@@ -111,11 +116,11 @@ class SimonSays {
     validateChosenColor(value) {
         if (this.sequence[this.userStep] === value) { //if the user stept secuense matches with the game secuense button is true
             this.totalsteps = this.totalsteps-1;
-            this.display.counter.textContent = `steps: ${this.totalsteps}`;
+            this.display.counter.textContent = `Following steps: ${this.totalsteps}`;
             this.buttonSounds[value].play(); // Plays the sound to confirm that the button secuense is correct
             if (this.level === this.userStep) { // This is when the secuense is not over but he is still playing
                 this.updateLevel(this.level + 1); // sums the level counter
-                this.updatecounter(this.level);
+                this.updatecounter(this.level); // Update the max step to follow
                 this.GameOver(); // Validates if the match is over
             }
 
@@ -125,6 +130,7 @@ class SimonSays {
         }
         else {  
             this.gameLost(); //Call a function for when the player presses a wrong button
+            this.updatecounter(this.level); // Reset the steps counter
         }
     }
 
@@ -135,7 +141,20 @@ class SimonSays {
 
     }
 
+    resetGame(){
+        this.userStep = 0; // Reset the user secuences to press
+
+        this.updateLevel(0);  // Reset the levels
+        this.updatecounter(this.level);
+        this.sequence = this.createSequence(); // Creates the random secuence of the inputs
+        this.showSequence(); // Shows the secuense to repat (1 button at start)
+
+        this.buttons.forEach((element, i) => {  // To each button
+            element.onclick = () => this.clickButton(i); // Gets the button value with a click
+        });
+    }
+
 }
 
-const simon = new SimonSays(gameButtons, startButton, level, counter);
+const simon = new SimonSays(gameButtons, startButton, level, counter, resetButton);
 simon.init();
