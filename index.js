@@ -54,6 +54,7 @@ class SimonSays {
 
     // This method hide the menu buttons and show the game interface
     normalGame(){
+
         this.display.normalButton.style.display = 'none';
         this.display.hardButton.style.display = 'none';
 
@@ -99,6 +100,7 @@ class SimonSays {
         this.speed = 1000; // 1 second
 
         this.updateLevel(0);  // Reset the levels
+        this.blockedButtons = true; // This is when the game is showing the secuense to follow player can't press buttons
 
         this.display.level.textContent = '';
         this.display.counter.textContent = '';
