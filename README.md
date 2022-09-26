@@ -19,7 +19,7 @@ Please use this format for your User Stories assignations
 | As a user, after I press start game, I need to be presented with a series of randoms input (only 1 at the start) if I input the pattern correctly it needs to repeat over again but with 1 additional step. |  X   |      |      |
 | As a user, when the sequence plays or the button is pressed I need to hear a sound for each button. |      |      |   X  |
 | As a user, If I press the wrong button, I need to be notified of my mistake and the pattern needs to repeat from the start. |      |      |   X   |
-| As a user, I can see how many steps are in the pattern |     |      |   X   |
+| As a user, I can see how many steps are in the pattern |     |   X   |      |
 | As a user, if I want to start over again I can press a button and the pattern will start at 1 over again|  X   |      |      |
 | As a user, when I get to step 20 and complete that pattern I will see message declaring me the winner and an option to start a new game |  X   |  X   |   X  |
 | (Extra) As a user, I can opt in to a harder mode where If it fail a pattern, I need to start over again with a new pattern. |  X   | X    |  X   |
