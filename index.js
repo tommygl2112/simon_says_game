@@ -5,10 +5,11 @@ const gameButtons = document.getElementsByClassName('square');
 const level = document.getElementById('level');
 const counter = document.getElementById('counter');
 const resetButton = document.getElementById('resetButton');
+const header = document.getElementById('header');
 
 class SimonSays {
-    constructor(gameButtons, startButton, level, counter, resetButton) {
-        this.display = {startButton, level, counter, resetButton}
+    constructor(gameButtons, startButton, level, counter, resetButton, header) {
+        this.display = {startButton, level, counter, resetButton, header}
 
         this.userStep = 0; // User secuence
         this.level = 0; // Actual game level
@@ -42,6 +43,8 @@ class SimonSays {
 
     // Starts the game loop
     startGame() {
+        this.display.header.textContent = 'Simon Says Game';
+
         this.display.startButton.disabled = true; // disable the start game button
         this.userStep = 0; // Reset the user secuences to press
 
@@ -106,6 +109,7 @@ class SimonSays {
 
     gameLost() { //Function used to notify a mistake to the player
         this.errorSound.play(); //Play an error sound
+        this.userStep = 0; // Reset the user secuences to press
         this.showSequence(); //Call the current sequence again
     }
 
@@ -135,9 +139,18 @@ class SimonSays {
     }
 
     GameOver() {
+        if (this.level === this.totalLevels) {
+            this.display.startButton.textContent = 'Play again';
+            this.display.header.textContent = 'You Won!';
 
-        this.userStep = 0; // Reset the player step secuence
-        this.showSequence(); // Show new secuence
+            this.display.startButton.disabled = false; 
+            this.blockedButtons = true;
+        }
+        
+        else{
+            this.userStep = 0; // Reset the player step secuence
+            this.showSequence(); // Show new secuence
+        }
 
     }
 
@@ -156,5 +169,5 @@ class SimonSays {
 
 }
 
-const simon = new SimonSays(gameButtons, startButton, level, counter, resetButton);
+const simon = new SimonSays(gameButtons, startButton, level, counter, resetButton, header);
 simon.init();
