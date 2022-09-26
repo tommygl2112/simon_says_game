@@ -6,15 +6,20 @@ const level = document.getElementById('level');
 const counter = document.getElementById('counter');
 const resetButton = document.getElementById('resetButton');
 const header = document.getElementById('header');
+const gameBox = document.getElementsByClassName('gameBox-greed');
+const normalButton = document.getElementById('menuNormalButton');
+const hardButton = document.getElementById('menuHardButton');
+const back = document.getElementById('backButton');
+const difficultText = document.getElementById('difficulty');
 
 class SimonSays {
-    constructor(gameButtons, startButton, level, counter, resetButton, header) {
-        this.display = {startButton, level, counter, resetButton, header}
+    constructor(gameButtons, startButton, level, counter, resetButton, header, gameBox, normalButton, hardButton, back, difficultText) {
+        this.display = {startButton, level, counter, resetButton, header, gameBox, normalButton, hardButton, back, difficultText}
 
         this.userStep = 0; // User secuence
         this.level = 0; // Actual game level
         this.totalLevels = 20; // Finishing game
-        this.totalsteps = 0;
+        this.totalsteps = 0; // Total steps to follow
 
         this.sequence = []; // Game secuence
         this.speed = 1000; // 1 second
@@ -29,6 +34,8 @@ class SimonSays {
             new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'),
         ]
         //Add the sounds for the game buttons
+
+        this.isHard = false;
     }
 
     // ================= Methods ====================================
@@ -39,6 +46,65 @@ class SimonSays {
         this.display.resetButton.disabled = true; // disable the start game button
         this.display.startButton.onclick = () => this.startGame();
         this.display.resetButton.onclick = () => this.resetGame();
+
+        this.display.normalButton.onclick = () => this.normalGame();
+        this.display.hardButton.onclick = () => this.hardGame();
+        this.display.back.onclick = () => this.backMenu();
+    }
+
+    // This method hide the menu buttons and show the game interface
+    normalGame(){
+        this.display.normalButton.style.display = 'none';
+        this.display.hardButton.style.display = 'none';
+
+        this.display.gameBox[0].style.display = 'inline-grid';
+        this.display.startButton.style.display = 'inline-grid';
+        this.display.resetButton.style.display = 'inline-grid';
+        this.display.back.style.display = 'inline-grid';
+
+        this.display.difficultText.textContent = '';
+    }
+
+    // This method hide the menu buttons and show the game interface
+    hardGame(){
+        this.display.normalButton.style.display = 'none';
+        this.display.hardButton.style.display = 'none';
+
+        this.display.gameBox[0].style.display = 'inline-grid';
+        this.display.startButton.style.display = 'inline-grid';
+        this.display.resetButton.style.display = 'inline-grid';
+        this.display.back.style.display = 'inline-grid';
+
+        this.display.difficultText.textContent = '';
+
+        this.isHard = true;
+    }
+
+    // This method hide the game interface buttons and show the game menu buttons, also sets the initial configuration
+    backMenu(){
+        this.display.normalButton.style.display = 'inline';
+        this.display.hardButton.style.display = 'inline';
+
+        this.display.gameBox[0].style.display = 'none';
+        this.display.startButton.style.display = 'none';
+        this.display.resetButton.style.display = 'none';
+        this.display.back.style.display = 'none';
+
+        this.userStep = 0; // User secuence
+        this.level = 0; // Actual game level
+        this.totalLevels = 20; // Finishing game
+        this.totalsteps = 0;
+
+        this.sequence = []; // Game secuence
+        this.speed = 1000; // 1 second
+
+        this.updateLevel(0);  // Reset the levels
+
+        this.display.level.textContent = '';
+        this.display.counter.textContent = '';
+        this.display.difficultText.textContent = 'Choose difficulty:';
+
+        this.display.startButton.disabled = false; // disable the start game button
     }
 
     // Starts the game loop
@@ -58,6 +124,7 @@ class SimonSays {
         });
         
         this.display.resetButton.disabled = false; // disable the start game button
+        //this.display.gameBox[0].style.display = 'inline-grid';
     }
 
     // Updates the level and the buttons
@@ -110,7 +177,14 @@ class SimonSays {
     gameLost() { //Function used to notify a mistake to the player
         this.errorSound.play(); //Play an error sound
         this.userStep = 0; // Reset the user secuences to press
-        this.showSequence(); //Call the current sequence again
+        
+        if (this.isHard === true) { // If player chooses the hard difficulty
+            this.startGame(); // When player made a mistake restarts the game
+        }
+
+        else{
+            this.showSequence(); //Call the current sequence again
+        }
     }
 
     clickButton(value) {
@@ -139,9 +213,9 @@ class SimonSays {
     }
 
     GameOver() {
-        if (this.level === this.totalLevels) {
-            this.display.startButton.textContent = 'Play again';
-            this.display.header.textContent = 'You Won!';
+        if (this.level === this.totalLevels) { // If player completes the game
+            this.display.startButton.textContent = 'Play again'; // Changes the Play button text
+            this.display.header.textContent = 'You Won!'; // Shows the mensaje which indicates that players won
 
             this.display.startButton.disabled = false; 
             this.blockedButtons = true;
@@ -169,5 +243,5 @@ class SimonSays {
 
 }
 
-const simon = new SimonSays(gameButtons, startButton, level, counter, resetButton, header);
+const simon = new SimonSays(gameButtons, startButton, level, counter, resetButton, header, gameBox, normalButton, hardButton, back, difficultText);
 simon.init();
