@@ -4,8 +4,8 @@ Welcome! This repo contains helpful information and starter files for your proje
 
 ## Team members
 
-Tomás García López, Flutter, Tomas.Garcia@itksquare.edu.mx
-Jacinto De la Hoz Hernandes, Salesforce, Jacinto.DelaHoz@itksquare.edu.mx
+Tomás García López, Flutter, Tomas.Garcia@itksquare.edu.mx <br />
+Jacinto De la Hoz Hernandes, Salesforce, Jacinto.DelaHoz@itksquare.edu.mx <br />
 Genaro Arredondo Loza, Javascript, Genaro.Arredondo@itksquare.edu.mx
 
 ## Assignation 
