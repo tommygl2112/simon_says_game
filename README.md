@@ -1,6 +1,6 @@
-# Project I
+# Simon Says Game
 
-Welcome! This repo contains helpful information and starter files for your project, just fork this repo and go to town!
+The game follows the same mechanics as the original game where a sequence of colors and sounds is presented and the player must repeat it. In this project JavaScript is used to create the game loop logic, HTML for the page structure, and CSS for the visual style of the game.
 
 ## Team members
 
@@ -27,7 +27,3 @@ Please use this format for your User Stories assignations
 # Live demo
 
 Link of our [live demo](https://tomasgarcia-ksquare.github.io/project1_simon/)
-
-# Requeriments
-You need to use the same version of node that we use in class and no external dependices can be used. This means no frameworks or libraries.
-
