@@ -1,16 +1,20 @@
 # Simon Says Game
 
+![screenshot](https://github.com/tommygl2112/simon_says_game/blob/master/ssg_screenshot.png)
+
 The game follows the same mechanics as the original game where a sequence of colors and sounds is presented and the player must repeat it. In this project JavaScript is used to create the game loop logic, HTML for the page structure, and CSS for the visual style of the game.
+
+# Live demo
+
+Link of our [live demo](https://tomasgarcia-ksquare.github.io/project1_simon/)
 
 ## Team members
 
-Tomás García López, Flutter, Tomas.Garcia@itksquare.edu.mx <br />
-Jacinto De la Hoz Hernandes, Salesforce, Jacinto.DelaHoz@itksquare.edu.mx <br />
-Genaro Arredondo Loza, Javascript, Genaro.Arredondo@itksquare.edu.mx
+Tomás García López, Tomas.Garcia@itksquare.edu.mx <br />
+Jacinto De la Hoz Hernandes, Jacinto.DelaHoz@itksquare.edu.mx <br />
+Genaro Arredondo Loza, Genaro.Arredondo@itksquare.edu.mx
 
-## Assignation 
-
-Please use this format for your User Stories assignations
+## Assignations
 
 | User Stories     | Tomás García | Jacinto De la Hoz | Genaro Arredondo |
 | ---------------- | :--: | ---: | :--: |
@@ -23,7 +27,3 @@ Please use this format for your User Stories assignations
 | As a user, if I want to start over again I can press a button and the pattern will start at 1 over again|  X   |      |      |
 | As a user, when I get to step 20 and complete that pattern I will see message declaring me the winner and an option to start a new game |  X   |  X   |   X  |
 | (Extra) As a user, I can opt in to a harder mode where If it fail a pattern, I need to start over again with a new pattern. |  X   | X    |  X   |
-
-# Live demo
-
-Link of our [live demo](https://tomasgarcia-ksquare.github.io/project1_simon/)
